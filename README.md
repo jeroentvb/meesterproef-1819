@@ -297,7 +297,7 @@ We also had a user test session at the Eye collectioncentre. We tested with 5 us
 Afterwards we created a [project board on github](https://github.com/MartijnReeuwijk/meesterproef-semia/projects/2) containing all the to do's we got from the tests. One of which was the ability to go back in the [history of clicked frames](https://github.com/MartijnReeuwijk/meesterproef-semia/pull/77).
 
 ### Week 5
-In week 5 I started writing the documentation which you are reading now. We also started to work on the design rationale.
+In week 5 I started writing the documentation which you are reading now. We also started to work on the design rational.
 
 ## Reflection
 This is my reflection on my [learning goals](#learning-goals).
