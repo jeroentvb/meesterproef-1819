@@ -390,7 +390,11 @@ In week 4 we had a testing session at the Eye collection centre with 5 users. We
 It was great to do these tests because as people who work on the project we tend to miss a lot of UX problems which were pointed out by the testers.  
 It was also really interesting to talk with Prof. Dr. Barbara Flueckiger from the university of Zürich. She knew quite a lot about the subject, because she was working on similar projects.
 
+<details>
+<summary>Business cards</summary>
+
 ![cards](assets/cards.jpg)
+</details>
 
 ### Performance matters - Perceived performance
 > Making sure the user sees something instantly so he/she can use the application.
