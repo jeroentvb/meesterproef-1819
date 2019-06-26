@@ -31,9 +31,9 @@ Our task was to create an app in which the film shots could be explored using th
 The concept was inspired by the Bladerunner 2049 movie. Sepcifically [this scene](https://youtu.be/04He1qcAgv8?t=48).  
 The user gets to see 9 random images which are replaced with 9 new frames after 10 seconds. If the user sees an interesting frame, he/she can click on it and be presented 9 new frames which are in some way related to the previously clicked one. These 9 new frames are then replaced with new related frames after 10 seconds. When going through the related frames the user can also filter them on one specific feature (color, shape, movement, visual complexity).
 
-| First screen | Second screen |
-| --- | --- |
-| ![]() | ![]() |
+| First screen | Second screen | End screen |
+| --- | --- | --- |
+| ![first screen](assets/first-screen.png) | ![second screen](assets/second-screen.png) | ![end screen](assets/end-screen.png)
 
 ### The data
 To achieve this we received data from [Nanne van Noord](https://nanne.github.io) who analyzed the films from [openbeelden](https://openbeelden.nl) using Artificial Intelligence, and created a dataset which contains the features of a particular shot.  
@@ -401,7 +401,7 @@ I didn't get around to doing this since I was pretty busy building the back-end.
 ### Performance matters - Critical render path
 > Optimizing file sizes and delivery for a faster application.
 
-The idea here was to add a npm build script to minify the js and css files and compress them using gzip or brotli.  
+The idea here was to add a npm build script to minify the js and css files and compress them using gzip or brotli. I did create the [build scripts](https://github.com/MartijnReeuwijk/meesterproef-semia/blob/e40f816edd2977f0f8548c7929fbf624841a800a/package.json#L9-L12) required.  
 Since the filesizes are really small (often 1 kb or less), we didn't see any benefit in doing this. Also because the app already got a 100% performance score.
 
 ### Git & Github
