@@ -1,9 +1,10 @@
 # Meesterproef
-My documentation on the Semia project for the meesterproef which I did together with [Martijn](https://github.com/MartijnReeuwijk), [Tim](https://github.com/Timilof) and [Leonie](https://github.com/leoniesmits).
+My documentation on the Semia project for the meesterproef which I did together with [Martijn](https://github.com/MartijnReeuwijk), [Tim](https://github.com/Timilof) and [Leonie](https://github.com/leoniesmits).  
+During the project I was mostly responsible for the back-end of the application.
 
 The repo can be found [here](https://github.com/MartijnReeuwijk/meesterproef-semia).
 
-## Inhoud
+## Table of contents
 * [The project](#the-project)
   * [The concept](#the-concept)
   * [The data](#the-data)
@@ -17,6 +18,8 @@ The repo can be found [here](https://github.com/MartijnReeuwijk/meesterproef-sem
 * [Reflection](#reflection)
   * [Web app from scratch](#web-app-from-scratch)
   * [Web design](#web-design)
+  * [Performance matters - Perceived performance](#performance-matters---perceived-performance)
+  * [Performance matters - Critical render path](#performance-matters---critical-render-path)
   * [Git & Github](#git-&-github)
 * [Honorable mentions](#honorable-mentions)
 
@@ -260,6 +263,8 @@ Since the project is about video, we also offer to preview the video using a but
 | --- | --- | --- |
 | **Web app from scratch** | App structure and code quality. | Making sure the code is clean, readable and maintainable by enforcing a code style and structured modules. |
 | **Web design** | User test | Performing a user test and using the test results to improve the product. |
+| **Performance matters** | Perceived performance | Making sure the user sees something instantly so he/she can use the application |
+| **Performance matters** | Critical render path | Optimizing file sizes and delivery for a faster application |
 
 And a last learning goal that is not related to the previous courses:
 
@@ -292,7 +297,7 @@ We also had a user test session at the Eye collectioncentre. We tested with 5 us
 Afterwards we created a [project board on github](https://github.com/MartijnReeuwijk/meesterproef-semia/projects/2) containing all the to do's we got from the tests. One of which was the ability to go back in the [history of clicked frames](https://github.com/MartijnReeuwijk/meesterproef-semia/pull/77).
 
 ### Week 5
-In week 5 I started writing the documentation which you are reading now.
+In week 5 I started writing the documentation which you are reading now. We also started to work on the design rationale.
 
 ## Reflection
 This is my reflection on my [learning goals](#learning-goals).
@@ -302,7 +307,7 @@ This is my reflection on my [learning goals](#learning-goals).
 
 In week 2 the codebase started to get bigger and messier. So I decided it was time to enforce a code style. I did this by adding a [build script](https://github.com/MartijnReeuwijk/meesterproef-semia/blob/2e48fd7e1f4181b215dd535674b4c067c8ba4c91/package.json#L9) which uses [standardjs](https://standardjs.com). The script fixes all minor problems (semicolons, indentation e.t.c.) and throws an error if there are bigger problems e.g. unused variables.
 
-The next step was to refactor basically the whole codebase and split front-end and back-end functionality up into modules.  
+The next step was to refactor basically the *whole* codebase and split front-end and back-end functionality up into modules.  
 I first sketched the functionality to better understand what was going on in the app at that time and what modules I could create.
 
 <details>
@@ -313,6 +318,71 @@ I first sketched the functionality to better understand what was going on in the
 
 Afterwards I started refactoring. You can see what I did in [this pull request](https://github.com/MartijnReeuwijk/meesterproef-semia/pull/21/files).
 
+To structure the project event better the project should have used something like sass for the css, because right there are a lot of css files.  
+I should also have kept an eye on the js files for the front-end, because there are a few files that I feel could have been an es6 module.
+
+<details>
+<summary>Code layout of the project</summary>
+
+```
+root
+|
+| - partials/
+|   |
+|   | - cronJobs.js
+|   | - data.js
+|   | - db.js
+|   | - openbeelden.js
+|   | - setupdb.js
+|
+| - static/
+|   |
+|   | - css/
+|       | - attribute.css
+|       | - clock.css
+|       | - footer.css
+|       | - keyframes.css
+|       | - master.css
+|       | - nav.css
+|       | - overlay.css
+|       | - share.css
+|   | - images/
+|       | - icons/
+|       | - logo/
+|       | - socials/
+|       | - thumbnails/
+|   | - js/
+|       | - partials/
+|       | - detail.js
+|       | - filter.js
+|       | - history.js
+|       | - index.js
+|       | - intro.js
+|       | - manifest.json
+|       | - share.js
+|   | - semia_data/
+|       | - SEMIA_seach_results.json
+|   | - array.json
+|   | - sw-register.js
+|   | - worker.js
+|
+| - views/
+|   |
+|   | - partials/
+|   | - detail.ejs
+|   | - error.ejs
+|   | - index.ejs
+|   | - offline.ejs
+|   | - search.ejs
+|
+| - .env
+| - config.json
+| - index.js
+```
+
+</details>
+
+
 ### Web design
 > Performing a user test and using the test results to improve the product.
 
@@ -321,6 +391,18 @@ It was great to do these tests because as people who work on the project we tend
 It was also really interesting to talk with Prof. Dr. Barbara Flueckiger from the university of Zürich. She knew quite a lot about the subject, because she was working on similar projects.
 
 ![cards](assets/cards.jpg)
+
+### Performance matters - Perceived performance
+> Making sure the user sees something instantly so he/she can use the application.
+
+The idea here was to load the lowest resolution thumbnail first to show the user the 9 frames as quick as possible, and then load the highest resolution ones.  
+I didn't get around to doing this since I was pretty busy building the back-end. It also didn't have a high priority since the highest resolution thumbnail 128x64px and 13kb. The app also gets a 100% performance score from chrome's audit. So we would rather focus on adding features.
+
+### Performance matters - Critical render path
+> Optimizing file sizes and delivery for a faster application.
+
+The idea here was to add a npm build script to minify the js and css files and compress them using gzip or brotli.  
+Since the filesizes are really small (often 1 kb or less), we didn't see any benefit in doing this. Also because the app already got a 100% performance score.
 
 ### Git & Github
 > Learning to work in a team on a project using Git & Github. Managing branches, issues and pull requests.
@@ -343,42 +425,6 @@ Since we were working on a relatively small project I opted to go for the follow
 I also asked Martijn to make the `dev` branch a protected branch, meaning at least one code review is required to merge a branch into dev. This way the code is checked by others and mistakes can be pointed out before something goes south.  
 
 And of course I ran into a few merge conflicts. But they weren't hard to solve. The modular structure of the project defenitly helped with that.
-
-<!--
-
-Feedback aan de gebruiker voor een betere user experience (perceived performance) (wafs (& performance matters))
-* Build flow voor precompressen en minifyen (transpilen?) (performance matters) Niet heel relevant.
-
-## Jeroen
-Wil leren samenwerken aan project in team
-
-### WAFS
-- Code structuur
-Aan de hand van een prettier style
-Server en clientside inrichten in modules
-
-- Feedback naar gebruiker
-Feedback geven in frontend om ervaring beter te maken
-
-### PM
-- Perceived performance
-suggestie: laad eerst de kleine thumbnails in maar zet die op de grootte van de grote plaatjes en swap dan als de grote binnenkomt.
-
-- Critical render path
-Build tools opzetten om verder performant te maken (lijkt me vrij weinig impact hebben)
-
-### Web Design
-- Testen
-Testen of gebruikers functionaliteiten begrijpen
-
-- Verplaatsen in gebruiker
-Wil features toevoegen waar ook echt behoefte aan is.
-
-### Afspraken
-- Gaat verder nadenken over perceived perf.
-- Gaat verder nadenken over hoe Web Design toe te passen, wat wil deze groep gebruikers
-
--->
 
 ## Honorable mentions
 * [Martijn](https://github.com/MartijnReeuwijk), [Tim](https://github.com/Timilof) and [Leonie](https://github.com/leoniesmits) for the collaboration on this project.
