@@ -286,7 +286,7 @@ We also got very positive feedback from the product owners.
 At the end of the week, the back-end of the project began to grow fairly quickly and it was starting to get messy, so I decided it was time to [enforce a code style](https://github.com/MartijnReeuwijk/meesterproef-semia/pull/16) and [restructure the back-end and front-end in modules](https://github.com/MartijnReeuwijk/meesterproef-semia/pull/21). The modules also made it easier to collaborate, since it avoids some merge conflicts.
 
 ### Week 3
-In week 3 I implemented the back-end functionality to turn a search url into a custom url for sharing because the search url's can get very long, depending on the amount of frames a user clicks on.
+In week 3 I implemented the back-end functionality to turn a search url into a custom url for sharing because the search url's can get very long, depending on the amount of frames a user clicks on. Due to time constrains this feature didn't get implemented in the front-end.
 
 We also had a feedback session with the product owners and Christian Olesen, who also works on the project at Eye and the UvA. I wasn't able to attend to this meeting because I had an interview for an internship. But Christian proposed to do a test with a few users the following week.
 
